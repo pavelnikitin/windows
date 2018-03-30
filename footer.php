@@ -88,6 +88,21 @@
     </section>
 
 <?php wp_footer(); ?>
-
+<?php if (is_page(130)): ?>
+<script>
+            function initMap() {
+              var uluru = {lat: <?php echo get_field('latitude',130) ?>, lng: <?php echo get_field('longitude',130) ?>};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: <?php echo get_field('zoom',130) ?>,
+                center: uluru
+              });
+              var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+              });
+            }
+          </script>
+<script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo get_field('your_api_key',130) ?>&callback=initMap"></script>
+<?php endif; ?>
 </body>
 </html>
